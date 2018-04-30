@@ -33,12 +33,10 @@ else()
 endif()
 
 find_package(dlib REQUIRED)
-include_directories(${dlib_INCLUDE_DIRS} )
-link_directories(${dlib_LIBRARY_DIRS})
 add_definitions(${dlib_DEFINITIONS})
 find_file(SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT
     shape_predictor_68_face_landmarks.dat
-    ${dlib_DIR}/../../../share/dlib)
+    ${dlib_DIR}/../../../../share/dlib)
 if(SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT STREQUAL "SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT-NOTFOUND")
     message(WARNING "shape_predictor_68_face_landmarks.dat not found -- will be required at run time")
 else()
@@ -51,7 +49,7 @@ set_target_properties(libwebcamheadtracker PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS
 set_target_properties(libwebcamheadtracker PROPERTIES OUTPUT_NAME webcamheadtracker)
 set_target_properties(libwebcamheadtracker PROPERTIES VERSION ${WEBCAMHEADTRACKER_LIBVERSION})
 set_target_properties(libwebcamheadtracker PROPERTIES SOVERSION ${WEBCAMHEADTRACKER_SOVERSION})
-target_link_libraries(libwebcamheadtracker ${OpenCV_LIBS} ${dlib_LIBRARIES})
+target_link_libraries(libwebcamheadtracker ${OpenCV_LIBS} dlib::dlib)
 install(TARGETS libwebcamheadtracker
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib${LIB_SUFFIX}
