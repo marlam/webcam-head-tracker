@@ -447,7 +447,7 @@ static void eulerToQuaternion(const double* euler, double* q)
     q[0] = sx2 * cy2 * cz2 - cx2 * sy2 * sz2;
     q[1] = cx2 * sy2 * cz2 + sx2 * cy2 * sz2;
     q[2] = cx2 * cy2 * sz2 - sx2 * sy2 * cz2;
-    q[2] = cx2 * cy2 * cz2 + sx2 * sy2 * sz2;
+    q[3] = cx2 * cy2 * cz2 + sx2 * sy2 * sz2;
 }
 
 bool WebcamHeadTracker::computeHeadPose()
