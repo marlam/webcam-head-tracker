@@ -470,7 +470,7 @@ bool WebcamHeadTracker::computeHeadPose()
     t1.setNow();
 
     /* Face landmark detection */
-#if 1
+#if 0
     // A temporary workaround for a Dlib/OpenCV incompatibility:
     IplImage iplImg = cvIplImage(*_frame);
     dlib::cv_image<dlib::bgr_pixel> dlibFrame(&iplImg);
