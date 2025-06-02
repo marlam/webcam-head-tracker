@@ -24,7 +24,7 @@ rate of 30 frames per second.
 
 ## How does it work?
 
-We use mainly [OpenCV](https://opencv.org/) and [dlib](http//dlib.net/) functionality:
+We use mainly [OpenCV](https://opencv.org/) and [dlib](https://dlib.net/) functionality:
 
 - Acquire a webcam video frame with OpenCV
 - Detect the main face in it using the
