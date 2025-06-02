@@ -4,7 +4,7 @@
 # permitted in any medium without royalty provided the copyright notice and this
 # notice are preserved. This file is offered as-is, without any warranty.
 
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.21)
 
 project(libwebcamheadtracker)
 set(WEBCAMHEADTRACKER_VERSION 1.0.0)
