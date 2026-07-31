@@ -18,7 +18,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 endif()
 
-find_package(OpenCV REQUIRED highgui imgproc objdetect calib3d video)
+find_package(OpenCV 5.0 REQUIRED COMPONENTS highgui imgproc objdetect video)
 include_directories(${OPENCV_INCLUDE_DIRS} )
 link_directories(${OPENCV_LIBRARY_DIRS})
 add_definitions(${OPENCV_DEFINITIONS})
@@ -27,7 +27,7 @@ find_file(HAARCASCADE_FRONTALFACE_ALT_XML
     haarcascade_frontalface_alt.xml
     ${OpenCV_DIR}/haarcascades 
     ${OpenCV_DIR_LOWER}/haarcascades
-    /usr/share/opencv4/haarcascades)
+    /usr/share/opencv5/haarcascades)
 if(${HAARCASCADE_FRONTALFACE_ALT_XML} STREQUAL "HAARCASCADE_FRONTALFACE_ALT_XML-NOTFOUND")
     message(STATUS "haarcascade_frontalface_alt.xml not found -- will be required at run time")
 else()
@@ -38,9 +38,11 @@ find_package(dlib REQUIRED)
 add_definitions(${dlib_DEFINITIONS})
 find_file(SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT
     shape_predictor_68_face_landmarks.dat
-    ${dlib_DIR}/../../../../share/dlib)
+    ${dlib_DIR}/../../../../share/dlib
+    ${CMAKE_SOURCE_DIR})
 if(SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT STREQUAL "SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT-NOTFOUND")
-    message(WARNING "shape_predictor_68_face_landmarks.dat not found -- will be required at run time")
+    message(WARNING "shape_predictor_68_face_landmarks.dat not found -- will
+    be required at run time; download from https://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2")
 else()
     add_definitions(-DSHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT=${SHAPE_PREDICTOR_68_FACE_LANDMARKS_DAT})
 endif()
